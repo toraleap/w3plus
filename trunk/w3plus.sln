@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "w3pmfc", "w3plus.vcproj", "{B0F1C5E1-830F-47E1-ABE6-42B9C0B057B9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+		with Runtime library|Win32 = with Runtime library|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B0F1C5E1-830F-47E1-ABE6-42B9C0B057B9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B0F1C5E1-830F-47E1-ABE6-42B9C0B057B9}.Debug|Win32.Build.0 = Debug|Win32
+		{B0F1C5E1-830F-47E1-ABE6-42B9C0B057B9}.Release|Win32.ActiveCfg = Release|Win32
+		{B0F1C5E1-830F-47E1-ABE6-42B9C0B057B9}.Release|Win32.Build.0 = Release|Win32
+		{B0F1C5E1-830F-47E1-ABE6-42B9C0B057B9}.with Runtime library|Win32.ActiveCfg = with Runtime library|Win32
+		{B0F1C5E1-830F-47E1-ABE6-42B9C0B057B9}.with Runtime library|Win32.Build.0 = with Runtime library|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
