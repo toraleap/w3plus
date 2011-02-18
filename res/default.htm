@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><title>w3plus</title>
+<link href="/style.css" rel="stylesheet" type="text/css" />
+<script src="/jquery-1.3.pack.js" type="text/javascript"></script>
+<script src="/action.js" type="text/javascript"></script>
+</head><body>
+<div class="title">w3plus<span id="configtrigger"><span id="configprofile" class="config" title="点击弹出配置文件及游戏命令下拉菜单">(default)</span><div class="configlist">
+	<table id="configlist">
+    <tr><td class="configitem"><a href="#" onclick="external.SetConfigFile('default');">切换到: default</a></td></tr>
+    <tr><td class="configcommand"><a href="#" title="重新查找本地可用的配置文件" onclick="RefreshConfigList();">刷新配置文件列表</a></td></tr>
+    <tr><td class="configcommand"><a href="#" title="创建当前配置文件的副本并切换到该配置文件" onclick="ConfigProfileSaveAs();">创建当前配置的副本...</a></td></tr>
+    <tr><td class="externalcommand"><a href="#" title="修改游戏玩家的ID(测试功能)" onclick="ModifyNickname();">修改游戏玩家名...</a></td></tr>
+    <tr><td class="externalcommand"><a href="#" title="修改建立游戏的主机名(测试功能)" onclick="ModifyHostname();">修改游戏主机名...</a></td></tr>
+    </table>
+</div></span></div>
+<div id="navi"><ul id="nav" class="nav">
+	<li class="litab licur"><a href="#" title="查看软件运行状态">运行状态</a></li>
+	<li class="litab"><a href="#" title="配置软件的执行参数">软件选项</a></li>
+	<li class="litab"><a href="#" title="配置魔兽的辅助功能">辅助功能</a></li>
+	<li class="litab"><a href="#" title="配置键盘鼠标映射功能">按键配置</a></li>
+	<li class="litab"><a href="#" title="查看软件相关帮助信息">软件帮助</a></li>
+</ul></div>
+<!--tab控件-->
+<div id="tabDiv">
+<div id="tabContent0" class="tabContent" style="display:block;">
+  <table width="100%" id="InfoTable" class="contentTable">
+    <tr>
+      <td class="group" width="170px">项目</td>
+      <td class="group">状态</td>
+    </tr>
+    <tr><td class="itemcaption">程序运行状态</td><td class="itemproperty"><span id="runStat" title="点击改变运行状态">运行中</span></td></tr>
+    <tr><td class="itemcaption">键盘/鼠标监控状态</td><td class="itemproperty"><span id="kbHook" title="点击改变监控状态">已激活</span> / <span id="msHook" title="点击改变监控状态">已激活</span></td></tr>
+    <tr><td class="itemcaption">魔兽争霸状态</td><td class="itemproperty"><span id="warStat" title="war3.exe进程启动情况">未检测到war3.exe进程</span></td></tr>
+    <tr>
+      <td class="group" width="170px">消息统计</td>
+      <td class="group">记录</td>
+    </tr>
+    <tr><td class="itemcaption">处理/截获消息总数</td><td class="itemproperty"><span id="prcCount" title="被软件截获到并进行了处理的消息总数">0</span>/<span id="msgCount" title="软件接收到的消息总数">0</span> 次</td></tr>
+    <tr><td class="itemcaption">平均/最大产生延时</td><td class="itemproperty"><span id="avgDelay" title="软件进行消息处理平均花费的时间">0</span>/<span id="maxDelay" title="软件进行消息处理导致的最大延时">0</span> ms</td></tr>
+    <tr>
+      <td class="group" width="170px">定时器统计</td>
+      <td class="group">记录</td>
+    </tr>
+    <tr><td class="itemcaption">执行总数</td><td class="itemproperty"><span id="timerCount" title="软件内定定时器执行次数">0</span> 次</td></tr>
+    <tr><td class="itemcaption">平均/最大执行时间</td><td class="itemproperty"><span id="avgTimerDelay" title="软件定时器循环平均执行时间">0</span>/<span id="maxTimerDelay" title="软件定时器循环最大执行时间">0</span> ms</td></tr>
+    <tr><td class="group" colspan="2" align="center""><a href="#" onClick="RefreshStatus();this.blur();">立即刷新显示(默认30s自动刷新)</a></td></tr>
+  </table>
+</div>
+<div id="tabContent1" class="tabContent" style="display:none;">
+  <table width="100%" id="cTable1" class="contentTable">
+    <tr>
+      <td class="group" colspan="2">软件功能选项</td>
+    </tr>
+  </table>
+</div>
+<div id="tabContent2" class="tabContent" style="display:none;">
+  <table width="100%" id="cTable2" class="contentTable">
+    <tr>
+      <td class="group" colspan="2">键盘按键屏蔽</td>
+    </tr>
+  </table>
+</div>
+<div id="tabContent3" class="tabContent" style="display:none;">
+  <table width="100%" id="cTable3" class="contentTable">
+    <tr>
+      <td class="group">游戏中控制本软件</td>
+      <td class="group">快捷键</td>
+    </tr>
+  </table>
+</div>
+<div id="tabContent4" class="tabContent" style="display:none;">
+  <table width="96%" id="TableHelp" class="contentTable">
+    <tr style="cursor:help;"><td class="group">即时帮助</td></tr>
+    <tr><td class="itemcaption"><div style="display:none;">鼠标停留在各个功能的描述上均可显示该功能的简短帮助。点击下面的各个标题可查看其他帮助信息。</div></td></tr>
+    <tr style="cursor:help;"><td class="group">设置按键说明</td></tr>
+    <tr><td class="itemcaption"><div style="display:none;">点击可设置快捷键的项目会弹出窗口以设置快捷键。普通组合快捷键可由一个辅助键和一个触发键组成，"短暂禁用辅助键"功能只能设置一个辅助键。单独设置触发键或辅助键时直接按下该键即可；设置组合键时应先按下辅助键，在放开前按下触发键即可。</div></td></tr>
+    <tr style="cursor:help;"><td class="group">关于辅助键的设置</td></tr>
+    <tr><td class="itemcaption"><div style="display:none;">辅助键在本软件中显示于"[ ]"内，"[ ]"右边为触发键。若某功能设置了辅助键，要先按下辅助键，在松开辅助键前按下触发键才可启动对应的功能。本软件可将键盘上的大部分键(不仅限于Ctrl,Shift,Alt,Win)都设置为辅助键。</div></td></tr>
+    <tr style="cursor:help;"><td class="group">临时恢复辅助键有什么用</td></tr>
+    <tr><td class="itemcaption"><div style="display:none;">当您暂时不需要本软件的按键映射功能时，按住临时恢复辅助键不放则所有按键都会恢复其原有的功能。例如设为LWin键，则游戏中需要打字时，在按住LWin键不放的同时进行键盘输入，便不会因用本软件改过按键而影响操作了。临时恢复辅助键同时会暂时解除窗口化的鼠标限制。</div></td></tr>
+    <tr style="cursor:help;"><td class="group">切换配置文件</td></tr>
+    <tr><td class="itemcaption"><div style="display:none;">w3plus现在可以保存多套不同的配置并在需要时随时切换成你想用的配置，例如DotA选影魔时用一套，选其他英雄时用另一套，玩其他RPG时再用一套，可以适应各种情况而避免每次修改配置的麻烦。通过顶部括号内文字弹出的下拉菜单可以切换及管理配置文件。</div></td></tr>
+    <tr style="cursor:help;"><td class="group">功能判断优先级</td></tr>
+    <tr><td class="itemcaption"><div style="display:none;">如果为不同功能设置了相同的按键，按下这个键时，本软件只会执行第一个满足条件的功能。由于卡尔功能和快速聊天功能通常都会设置辅助键，故预设的优先级顺序是：系统控制按键->卡尔功能键->快速聊天键->物品快捷键->鼠标模拟快捷键。</div></td></tr>
+    <tr style="cursor:help;"><td class="group">以最小模式运行</td></tr>
+    <tr><td class="itemcaption"><div style="display:none;">若希望本程序以最小的内存占用方式工作，可以按住Shift键启动程序，程序将不会加载包括设置界面及任务栏通知图标在内的组件以节省系统资源。由于没有用户界面，若需退出，请再次启动本程序；如需更改设置，请以正常方式运行程序。</div></td></tr>
+    <tr style="cursor:help;"><td class="group">带命令行参数启动</td></tr>
+    <tr><td class="itemcaption"><div style="display:none;">软件目前支持下列两个命令行参数，可组合使用。<br>-lite 强制软件以最小模式运行<br>-config:配置名 启动时自动载入指定的配置文件</div></td></tr>
+    <tr><td align="right"><b>Designed by <a href="http://mobius.yo2.cn/archives/630173" target="_blank">惊羽九天</a>, Themed by <a href="http://www.justskins.com/themes/wordpress-themes" target="_blank">JustSkins</a></b></td></tr>
+  </table>
+</div>
+</div>
+<div id="footer"><span id="appVer" title="软件版本号及编译日期">w3plus 1.00 beta</span></div>
+<!--tb控件结束-->
+<div id="maskDiv" onClick="external.CancelKeyMonitor();hideTip();"></div><div id="tipDiv"><table width="100%" height="100%"><tr><td id="tipContent" align="center" valign="middle"></td></tr></table></div>
+</body></html>
